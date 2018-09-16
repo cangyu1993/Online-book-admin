@@ -1,12 +1,20 @@
 <template>
     <div>
-      <h1>我是content的第一个页面</h1>
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item>首页</el-breadcrumb-item>
+      </el-breadcrumb>
+      <el-rate v-model="value1"></el-rate>
     </div>
 </template>
 
 <script>
     export default {
-        name: "onePage"
+        name: "onePage",
+        data() {
+        return {
+          value1: null,
+        }
+      }
     }
 </script>
 

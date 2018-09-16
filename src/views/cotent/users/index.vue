@@ -2,7 +2,7 @@
     <div class="user-manage">
           <div class="breadcrumb">
             <el-breadcrumb separator-class="el-icon-arrow-right">
-              <el-breadcrumb-item :to="{ path: '/home/onePage' }">首页</el-breadcrumb-item>
+              <el-breadcrumb-item :to="{ path: '/home/onePage' }">用户管理</el-breadcrumb-item>
               <el-breadcrumb-item>用户列表</el-breadcrumb-item>
             </el-breadcrumb>
           </div>
@@ -48,11 +48,13 @@
                 <template slot-scope="scope">
                   <el-button
                     size="mini"
-                    @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                    @click="handleEdit(scope.row._id)">编辑</el-button>
+                  <!--(scope.$index, scope.row)-->
                   <el-button
                     size="mini"
                     type="danger"
-                    @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                    @click="handleDelete(scope.row._id)" >删除</el-button>
+                  <!--(scope.$index, scope.row)-->
                 </template>
               </el-table-column>
 
@@ -62,23 +64,59 @@
 </template>
 
 <script>
+    import bus from '../../../views/bus/index'
     export default {
       data() {
         return {
-          tableData:[]
+          tableData:[],
         }
       },
-      methods:{
-        getData(){
-          this.$axios.get('/user').then(res=>{
-            console.log(res)
-            if(res.code == 200){
-              this.tableData=res.data
+      methods: {
+        getData() {
+          this.$axios.get('/user').then(res => {
+            // console.log(res)
+            if (res.code == 200) {
+              this.tableData = res.data
             }
           })
         },
-        handleEdit(){},
-        handleDelete(){}
+        handleEdit(id) {
+          let i
+          this.$router.push('/home/usersDetails')
+          this.tableData.forEach((item,index)=>{
+              if (item._id == id) {
+                return  i=index
+              }
+          })
+          console.log(i)
+          console.log(this.tableData[i])
+          bus.$emit('toData',this.tableData[i])
+        },
+        // 删除管理员
+        handleDelete(id) {
+          this.$confirm('此操作将永久删除该管理员, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+            center: true
+          }).then(() => {
+            this.$axios.post('/user/delete',{userIds:[id]}).then(res => {
+              console.log(res)
+              this.$message({
+                type: 'success',
+                message: '删除成功!'
+              });
+              setTimeout(() => {
+                this.getData()
+              }, 1000)
+            })
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            });
+          });
+        },
       },
       created(){
         this.getData()

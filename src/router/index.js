@@ -8,7 +8,8 @@ const components = {
   home:()=>import('@/views/home'),
   onePage:()=>import('@/views/cotent/onePage'),
   twoPage:()=>import('@/views/cotent/twoPage'),
-  users:()=>import('@/views/cotent/users/index')
+  users:()=>import('@/views/cotent/users/index'),
+  usersDetails:()=>import('@/views/cotent/users/usersDetails'),
 
 }
 
@@ -43,9 +44,12 @@ export default new Router({
           },
           component: components.users,
         },
-
+        {
+          path: 'usersDetails',
+          component: components.usersDetails,
+        },
       ]
-    }
+    },
 
 
 
