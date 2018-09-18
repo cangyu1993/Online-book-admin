@@ -28,8 +28,8 @@
             <span>分类管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="2-1">分类列表</el-menu-item>
-            <el-menu-item index="2-2">添加分类</el-menu-item>
+            <el-menu-item index="/home/sortList">分类列表</el-menu-item>
+            <el-menu-item index="/home/addclassify">添加分类</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
          <!--导航3-->
@@ -41,6 +41,17 @@
           <el-menu-item-group>
             <el-menu-item index="3-1">图书列表</el-menu-item>
             <el-menu-item index="3-2">添加图书</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+        <!--导航4-->
+        <el-submenu index="3">
+          <template slot="title">
+            <i class="el-icon-setting"></i>
+            <span>轮播图管理</span>
+          </template>
+          <el-menu-item-group>
+            <el-menu-item index="3-1">轮播图列表</el-menu-item>
+            <el-menu-item index="3-2">添加轮播图</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>

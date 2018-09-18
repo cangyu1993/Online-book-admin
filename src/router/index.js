@@ -10,6 +10,10 @@ const components = {
   twoPage:()=>import('@/views/cotent/twoPage'),
   users:()=>import('@/views/cotent/users/index'),
   usersDetails:()=>import('@/views/cotent/users/usersDetails'),
+  sortList:()=>import('@/views/sortList'),
+  listdetail:()=>import('@/views/classificationDetails'),
+  addclassify:()=>import('@/views/addclassify'),
+  booktable:()=>import('@/views/booktable'),
 
 }
 
@@ -47,6 +51,23 @@ export default new Router({
         {
           path: 'usersDetails',
           component: components.usersDetails,
+        },
+        {
+          path: 'sortList',
+          component: components.sortList,
+        },
+        {
+          path: 'listdetail',
+          component: components.listdetail,
+        },
+        {
+          path: 'addclassify',
+          component: components.addclassify,
+        },
+        {
+          path: 'booktable',
+          name:'booktable',
+          component: components.booktable,
         },
       ]
     },

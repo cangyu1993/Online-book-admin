@@ -36,7 +36,7 @@ const xhr= {
   },
   put(url, data, config) {
     return new Promise((resolve, reject) => {
-      instance.post(url, data, config).then(res => {
+      instance.put(url, data, config).then(res => {
         resolve(res.data)
         if(res.data.code == 401) {
           Message.error('登陆状态失效,回到登录页')
@@ -46,7 +46,20 @@ const xhr= {
         reject(err)
       })
     })
-  }
+  },
+  delete(url, data, config) {
+    return new Promise((resolve, reject) => {
+      instance.delete(url, {params: data}, config).then(res => {
+        resolve(res.data)
+        if(res.data.code == 401) {
+          Message.error('删除失败')
+          router.push('/')
+        }
+      }).catch(err=>{
+        reject(err)
+      })
+    })
+  },
 }
 
 export const  $axios = xhr

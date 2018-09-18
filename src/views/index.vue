@@ -25,6 +25,7 @@
               username:"",
               password:""
             },
+            loginData:{},
             isLoading:false
           }
       },
@@ -33,8 +34,11 @@
              this.isLoading = true
              this.$axios.post('/login',this.formDate).then(res=>{
                 console.log(res)
+                this.loginData = res.data
+                sessionStorage.setItem('usermsg', JSON.stringify(this.loginData));
                 if(res.code == 200){
                    this.$message.success('登陆成功')
+
                    setTimeout(()=>{
                      this.$router.push('/home/onePage')
                    },1000)
