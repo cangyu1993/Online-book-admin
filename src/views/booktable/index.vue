@@ -1,3 +1,6 @@
+
+<!--书籍分类详情页-->
+
 <template>
   <div>
     <div class="breadcrumb">
@@ -6,6 +9,7 @@
         <el-breadcrumb-item>分类详情</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
+     <div class="sortTitle"><h3>>>>>>>>>{{bigTitle}}</h3></div>
     <div class="bookTable">
       <el-table
         :data="bookNum"
@@ -22,6 +26,7 @@
 
         <el-table-column
           prop="author"
+          align=center
           label="作者"
           width="180">
         </el-table-column>
@@ -29,11 +34,13 @@
         <el-table-column
           prop="index"
           label="总章节"
+          align=center
           width="180">
         </el-table-column>
 
         <el-table-column
           prop="looknums"
+          align=center
           label="观看人数">
         </el-table-column>
 
@@ -58,7 +65,18 @@
 
       </el-table>
     </div>
+    <div class="pageNum">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="count"
+        @current-change="pageChange"
+        :page-size=5
+      >
+      </el-pagination>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -67,9 +85,11 @@
     data() {
       return {
         pn: 1,
-        size: 10,
         bookNum: [],
-        sortId: ""
+        sortId: "",
+        count:0,
+        page:1,
+        bigTitle:""
       }
     },
     created() {
@@ -86,9 +106,11 @@
       },
       getData() {
         if (this.sortId) {
-          this.$axios.get(`/category/${this.sortId}/books?pn=1&size=10`).then(res => {
+          this.$axios.get(`/category/${this.sortId}/books?pn=${this.page}&size=5`).then(res => {
             console.log(res)
+            this.count = res.count
             this.bookNum = res.data.books
+            this.bigTitle = res.data.title
             console.log(this.bookNum)
           })
         } else {
@@ -122,19 +144,11 @@
           });
         });
       },
-
-
-
-
-
-
-
-
-
-
-
-
-
+      pageChange(page) {
+        console.log(page)
+        this.page = page
+        this.getData()
+      },
     }
   }
 </script>
@@ -146,5 +160,12 @@
         width: 200px;
         height: 250px;
       }
+    }
+    .sortTitle{
+      padding: 10px 0;
+    }
+    .pageNum {
+      padding: 10px 0;
+      text-align: center;
     }
 </style>

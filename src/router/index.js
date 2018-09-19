@@ -15,6 +15,7 @@ const components = {
   addclassify:()=>import('@/views/addclassify'),
   booktable:()=>import('@/views/booktable'),
   bookList:()=>import('@/views/bookList'),
+  slideshow:()=>import('@/views/slideshow'),
 
 }
 
@@ -71,8 +72,12 @@ export default new Router({
           component: components.booktable,
         },
         {
-          path: 'bookList',
+          path: 'bookList',    //图书列表
           component: components.bookList,
+        },
+        {
+          path: 'slideshow',   //轮播图列表
+          component: components.slideshow,
         },
       ]
     },

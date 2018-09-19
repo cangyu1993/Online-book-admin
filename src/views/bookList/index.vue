@@ -1,17 +1,15 @@
 <template>
   <div>
-    <changeSort/>
+    <h1>66666</h1>
   </div>
 </template>
 
 <script>
-  import changeSort from '@/components/changeSort.vue'
+
 
   export default {
     name: "index",
-    components: {
-      changeSort,
-    }
+
   }
 </script>
 

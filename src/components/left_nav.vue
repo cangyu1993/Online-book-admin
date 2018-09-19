@@ -1,3 +1,7 @@
+
+<!--左侧固定导航-->
+
+
 <template>
     <div>
       <el-menu
@@ -50,7 +54,7 @@
             <span>轮播图管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="3-1">轮播图列表</el-menu-item>
+            <el-menu-item index="/home/slideshow">轮播图列表</el-menu-item>
             <el-menu-item index="3-2">添加轮播图</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
