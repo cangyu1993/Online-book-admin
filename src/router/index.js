@@ -14,6 +14,7 @@ const components = {
   listdetail:()=>import('@/views/classificationDetails'),
   addclassify:()=>import('@/views/addclassify'),
   booktable:()=>import('@/views/booktable'),
+  bookList:()=>import('@/views/bookList'),
 
 }
 
@@ -68,6 +69,10 @@ export default new Router({
           path: 'booktable',
           name:'booktable',
           component: components.booktable,
+        },
+        {
+          path: 'bookList',
+          component: components.bookList,
         },
       ]
     },

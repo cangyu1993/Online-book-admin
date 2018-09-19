@@ -39,7 +39,7 @@
             <span>图书管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="3-1">图书列表</el-menu-item>
+            <el-menu-item index="/home/bookList">图书列表</el-menu-item>
             <el-menu-item index="3-2">添加图书</el-menu-item>
           </el-menu-item-group>
         </el-submenu>

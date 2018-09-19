@@ -14,6 +14,7 @@
 
         <el-table-column
           prop="username"
+          align="center"
           label="姓名"
           width="180">
         </el-table-column>
@@ -21,11 +22,13 @@
         <el-table-column
           prop="nickname"
           label="昵称"
+          align="center"
           width="180">
         </el-table-column>
 
         <el-table-column
           prop="updatedTime"
+          align="center"
           label="日期">
         </el-table-column>
 
@@ -36,6 +39,7 @@
 
         <el-table-column
           prop=""
+          align="center"
           label="头像">
           <template slot-scope="scope">
             <img :src="scope.row.avatar" alt="" class="avatar">

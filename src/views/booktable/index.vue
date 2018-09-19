@@ -3,7 +3,7 @@
     <div class="breadcrumb">
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/home/sortList' }">分类列表</el-breadcrumb-item>
-        <el-breadcrumb-item>分类详情页</el-breadcrumb-item>
+        <el-breadcrumb-item>分类详情</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="bookTable">
@@ -12,13 +12,13 @@
         border
         style="width: 100%">
 
-        <!--<el-table-column-->
-          <!--prop=""-->
-          <!--label="封面">-->
-          <!--<template slot-scope="scope">-->
-            <!--<img :src="scope.row.img" alt="" class="avatar">-->
-          <!--</template>-->
-        <!--</el-table-column>-->
+        <el-table-column
+          prop=""
+          label="封面">
+          <template slot-scope="scope">
+            <img :src="scope.row.img" alt="" class="avatar">
+          </template>
+        </el-table-column>
 
         <el-table-column
           prop="author"
@@ -39,7 +39,21 @@
 
         <el-table-column
           prop="desc"
-          label="书籍描述">
+          label="书籍描述"
+          width="300"
+        >
+        </el-table-column>
+
+        <el-table-column
+          prop=""
+          label="操作">
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              type="danger"
+              @click="handleDelete(scope.row._id)">删除该图书
+            </el-button>
+          </template>
         </el-table-column>
 
       </el-table>
@@ -52,23 +66,23 @@
     name: "index",
     data() {
       return {
-        sortId: "",
         pn: 1,
         size: 10,
         bookNum: [],
+        sortId: ""
       }
     },
     created() {
+      this.getQuery()
       this.getData()
-      // this.getParams ()
     },
     methods: {
-      getParams () {
+      getQuery() {
         // 取到路由带过来的参数
-        let routerParams = this.$route.params.sortId
+        let routerQuery = this.$route.query.name
         // 将数据放在当前组件的数据内
-        console.log(this.$route.params.sortId)
-        this.sortId = routerParams
+        console.log(routerQuery)
+        this.sortId = routerQuery
       },
       getData() {
         if (this.sortId) {
@@ -84,14 +98,53 @@
           });
         }
       },
-    },
-    watch: {
-      // 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
-      '$route': 'getParams'
+      handleDelete(id) {
+        this.$confirm('此操作将永久删除该书籍, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+          center: true
+        }).then(() => {
+          this.$axios.delete(`/category/${this.sortId}/book/${id}`).then(res => {
+            console.log(res)
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            });
+            setTimeout(() => {
+              this.getData()
+            }, 1000)
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+      },
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+    .bookTable{
+      margin-top: 20px;
+      .avatar{
+        width: 200px;
+        height: 250px;
+      }
+    }
 </style>

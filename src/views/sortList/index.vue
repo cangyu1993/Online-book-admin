@@ -17,23 +17,27 @@
 
       <el-table-column
         prop="title"
+        align="center"
         label="分类名"
         width="180">
       </el-table-column>
 
       <el-table-column
         prop="books.length"
+        align="center"
         label="该分类下书籍数量"
         width="180">
       </el-table-column>
 
       <el-table-column
         prop="index"
+        align="center"
         label="优先数值">
       </el-table-column>
 
       <el-table-column
         prop=""
+        align="center"
         label="书籍封面">
         <template slot-scope="scope">
           <img :src="scope.row.icon" alt="" class="avatar">
@@ -44,11 +48,11 @@
         prop=""
         label="操作">
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            @click="handleEdit(scope.row._id)">修改分类
-          </el-button>
-          <!--(scope.$index, scope.row)-->
+
+          <template>
+            <changeSort :sortId="scope.row"/>
+          </template>
+
           <el-button
             size="mini"
             type="danger"
@@ -80,8 +84,12 @@
 </template>
 
 <script>
+  import changeSort from '@/components/changeSort.vue'
   export default {
     name: "index",
+    components: {
+      changeSort,
+    },
     data() {
       return {
         listData: [],
@@ -139,11 +147,9 @@
           message: '即将跳转至详情页'
         });
         this.$router.push({
-          path: '/home/booktable',
-          name:"booktable",
-          params: {
-            // name: 'booktable',
-            sortId: id
+          path:"/home/booktable",
+          query:{
+            name:id,
           }
         })
       },
