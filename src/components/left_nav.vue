@@ -44,7 +44,7 @@
           </template>
           <el-menu-item-group>
             <el-menu-item index="/home/bookList">图书列表</el-menu-item>
-            <el-menu-item index="3-2">添加图书</el-menu-item>
+            <el-menu-item index="/home/addBooks">添加图书</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <!--导航4-->
@@ -55,7 +55,7 @@
           </template>
           <el-menu-item-group>
             <el-menu-item index="/home/slideshow">轮播图列表</el-menu-item>
-            <el-menu-item index="3-2">添加轮播图</el-menu-item>
+            <el-menu-item index="/home/addImgTo">添加轮播图</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>

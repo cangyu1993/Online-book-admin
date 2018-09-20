@@ -22,11 +22,11 @@
               <h4>用户名：</h4>
               <el-input :placeholder="tryData.username" :disabled="true" v-model="userData.username"/>
               <h4>昵称：</h4>
-              <el-input :placeholder="tryData.nickname" v-model="userData.nickname"/>
+              <el-input placeholder="昵称" v-model="tryData.nickname"/>
               <h4>个人邮箱：</h4>
-              <el-input :placeholder="tryData.email" v-model="userData.email"/>
+              <el-input placeholder="邮箱" v-model="tryData.email"/>
               <h4>个人描述：</h4>
-              <el-input :placeholder="tryData.desc" type="textarea"  :rows="4" v-model="userData.desc"/>
+              <el-input placeholder="个人描述" type="textarea"  :rows="4" v-model="tryData.desc"/>
           </div>
 
           <div class="btnDown">
@@ -61,7 +61,7 @@
         },
       methods:{
         toSetData(){
-            this.$axios.put('/user/userInfo',this.userData).then(res => {
+            this.$axios.put('/user/userInfo',this.tryData).then(res => {
               console.log(res)
               if (res.code == 200) {
                 this.$message({
@@ -85,14 +85,14 @@
         },
         getToken(){
           axios.get('http://upload.yaojunrong.com/getToken').then(res=>{
-            console.log('下面是返回的token')
-            console.log(res)
+            // console.log('下面是返回的token')
+            // console.log(res)
             this.token = res.data.data
           })
         },
 
         handleImgTo(event){
-          console.log(event)
+          // console.log(event)
           let file = event.target.files[0]
           let formData = new FormData()
 
@@ -105,7 +105,7 @@
               // 'Content-Type':'application/json'
             }
           }).then(res=>{
-            console.log(res)
+            // console.log(res)
             this.userData.avatar = res.data.url
           })
         },

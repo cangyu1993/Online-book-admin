@@ -16,6 +16,8 @@ const components = {
   booktable:()=>import('@/views/booktable'),
   bookList:()=>import('@/views/bookList'),
   slideshow:()=>import('@/views/slideshow'),
+  addImgTo:()=>import('@/views/addImgTo'),
+  addBooks:()=>import('@/views/addBooks'),
 
 }
 
@@ -78,6 +80,14 @@ export default new Router({
         {
           path: 'slideshow',   //轮播图列表
           component: components.slideshow,
+        },
+        {
+          path: 'addImgTo',   //轮播图添加
+          component: components.addImgTo,
+        },
+        {
+          path: 'addBooks',   //添加图书
+          component: components.addBooks,
         },
       ]
     },

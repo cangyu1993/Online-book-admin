@@ -8,13 +8,13 @@
     <div class="peopleDetail">
       <div class="content">
         <h4>用户名：</h4>
-        <el-input :placeholder="tryData.username" :disabled="true" v-model="userData.username"/>
+        <el-input :placeholder="tryData.username" :disabled="true" />
         <h4>昵称：</h4>
-        <el-input :placeholder="tryData.nickname" v-model="userData.nickname"/>
+        <el-input placeholder="输入更改的昵称" v-model="tryData.nickname"/>
         <h4>个人邮箱：</h4>
-        <el-input :placeholder="tryData.email" v-model="userData.email"/>
+        <el-input placeholder="输入更改的邮箱" v-model="tryData.email"/>
         <h4>个人描述：</h4>
-        <el-input :placeholder="tryData.desc" type="textarea"  :rows="4" v-model="userData.desc"/>
+        <el-input placeholder="输入更改的个人描述" type="textarea"  :rows="4" v-model="tryData.desc"/>
       </div>
 
       <div class="btnDown">
@@ -50,7 +50,7 @@
       methods:{
         toSetData(){
 
-          this.$axios.put('/user/userInfo',this.userData).then(res => {
+          this.$axios.put('/user/userInfo',this.tryData).then(res => {
             console.log(res)
             if (res.code == 200) {
               this.$message({

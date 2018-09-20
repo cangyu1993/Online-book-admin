@@ -45,6 +45,7 @@
       padding-left: 200px;
       /*background-color: #ae5aff;*/
       .title{
+        position: relative;
         height: 60px;
         font-weight: 400;
         text-align: center;
@@ -52,9 +53,12 @@
         border-bottom: 1px solid #e9e9e9;
       }
       .btn-out{
-        position: fixed;
+        position: absolute;
         top: 10px;
-        right: 20px;
+        left: 1385px;
+        /*position: fixed;*/
+        /*top: 10px;*/
+        /*right: 20px;*/
       }
     }
   .mainContent{
