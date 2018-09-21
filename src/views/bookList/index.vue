@@ -41,13 +41,24 @@
           </el-option>
         </el-select>
 
-
         <div slot="footer" class="dialog-footer">
           <el-button @click="isShow = false">取 消</el-button>
           <el-button type="primary" @click="bookToSort001" >确 定</el-button>
         </div>
       </el-dialog>
 
+    </div>
+    <div>
+      <el-dialog title="提示" :visible.sync="isSeenAgs">
+        <h4>此书已在
+          <h2>
+            {{this.sortTitle}}分类中
+          </h2>
+        </h4>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="isSeenAgs = false">确定</el-button>
+        </div>
+      </el-dialog>
     </div>
 
   </div>
@@ -68,9 +79,9 @@
         sortId: '',
         value1: '',
         sortData: [],
-        isSeen: false,
-        numA:0,
-        numB:0,
+        isSeen: true,
+        sortTitle: "",
+        isSeenAgs: false
       }
     },
     methods: {
@@ -107,7 +118,6 @@
       },
       handleToSort(id) {
         this.isShow = true
-        this.isSeen = false
         this.bookId = id
         console.log("书籍id")
         console.log(this.bookId)
@@ -117,7 +127,7 @@
           console.log(res)
           this.sortData = res.data
         })
-
+        // this.getFalse()
       },
       getSortId(index) {
         // console.log(index)
@@ -126,11 +136,11 @@
             return this.sortId = item._id
           }
         })
-        console.log("分类id")
-        console.log(this.sortId)
+        // console.log("分类id")
+        // console.log(this.sortId)
+
       },
       bookToSort001() {
-        // (this.getFalse()())
           this.$axios.post(`/category/${this.sortId}/book/${this.bookId}`).then(res => {
             console.log(res)
             if (res.code == 200) {
@@ -143,23 +153,22 @@
             this.isShow = false
           })
       },
-      // getFalse(){
-      //   for (let i = 0; i <= this.sortData.length; i++) {
+      // getFalse() {
+      //
+      //   console.log(this.sortTitle)
+      //   for (let i = 0; i < this.sortData.length; i++) {
       //     let newArr = []
-      //     newArr = this.sortData[i][0]
-      //     this.numA=newArr.length
-      //     for (let j = 0; j <= numA; j++) {
-      //       let newArr1 = []
-      //       newArr1 = newArr[j]
-      //       this.numB=newArr1.length
-      //       for (let k = 0; k <= numB; k++) {
-      //         if (newArr1[k] != this.bookId) {
-      //           return this.isSeen = true
-      //         }
+      //     newArr = this.sortData[i].books
+      //     for (let j = 0; j < newArr.length; j++) {
+      //       if (newArr[j] = this.bookId) {
+      //         return this.sortTitle = this.sortData[i].title;
       //       }
       //     }
+      //
       //   }
+      //
       // }
+
     },
     created() {
       this.getData()

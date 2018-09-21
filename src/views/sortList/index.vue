@@ -75,7 +75,7 @@
         layout="prev, pager, next"
         :total="count"
         @current-change="pageChange"
-        :page-size="6"
+        :page-size="size"
       >
       </el-pagination>
     </div>
@@ -94,15 +94,18 @@
       return {
         listData: [],
         page: 1,
-        count: 20,
+        count: 0,
+        size:6
 
       }
     },
     methods: {
       getData() {
-        this.$axios.get('/category', {pn: this.page, size: 6}).then(res => {
+        // '/category', {pn: this.page, size: 6}
+        this.$axios.get(`/category?pn=${this.page}&size=${this.size}`).then(res => {
           console.log(res)
           this.listData = res.data
+          this.count = res.count
         })
       },
       // 删除
