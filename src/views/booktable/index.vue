@@ -25,6 +25,12 @@
         </el-table-column>
 
         <el-table-column
+          prop="title"
+          align=center
+          label="书名">
+        </el-table-column>
+
+        <el-table-column
           prop="author"
           align=center
           label="作者"
@@ -38,11 +44,7 @@
           width="180">
         </el-table-column>
 
-        <el-table-column
-          prop="looknums"
-          align=center
-          label="观看人数">
-        </el-table-column>
+
 
         <el-table-column
           prop="desc"
@@ -121,7 +123,7 @@
         }
       },
       handleDelete(id) {
-        this.$confirm('此操作将永久删除该书籍, 是否继续?', '提示', {
+        this.$confirm('此操作将永久从该分类中删除, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning',

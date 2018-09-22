@@ -48,7 +48,7 @@
           </el-menu-item-group>
         </el-submenu>
         <!--导航4-->
-        <el-submenu index="3">
+        <el-submenu index="4">
           <template slot="title">
             <i class="el-icon-setting"></i>
             <span>轮播图管理</span>
@@ -56,6 +56,7 @@
           <el-menu-item-group>
             <el-menu-item index="/home/slideshow">轮播图列表</el-menu-item>
             <el-menu-item index="/home/addImgTo">添加轮播图</el-menu-item>
+            <!--<el-menu-item index="/home/text">测试用</el-menu-item>-->
           </el-menu-item-group>
         </el-submenu>
       </el-menu>

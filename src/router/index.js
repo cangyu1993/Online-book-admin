@@ -18,6 +18,7 @@ const components = {
   slideshow:()=>import('@/views/slideshow'),
   addImgTo:()=>import('@/views/addImgTo'),
   addBooks:()=>import('@/views/addBooks'),
+  text:()=>import('@/views/text'),
 
 }
 
@@ -88,6 +89,10 @@ export default new Router({
         {
           path: 'addBooks',   //添加图书
           component: components.addBooks,
+        },
+        {
+          path: 'text',   //测试页面
+          component: components.text,
         },
       ]
     },
