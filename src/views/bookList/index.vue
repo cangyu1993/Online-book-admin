@@ -25,7 +25,7 @@
         layout="prev, pager, next"
         :total="count"
         @current-change="pageChange"
-        :page-size=12
+        :page-size=16
       >
       </el-pagination>
     </div>
@@ -90,7 +90,7 @@
     },
     methods: {
       getData() {
-        this.$axios.get(`/book?pn=${this.page}&size=15`).then(res => {
+        this.$axios.get(`/book?pn=${this.page}&size=16`).then(res => {
           console.log(res)
           this.bookData = res.data
         })
