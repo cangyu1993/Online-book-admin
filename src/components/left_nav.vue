@@ -56,7 +56,7 @@
           <el-menu-item-group>
             <el-menu-item index="/home/slideshow">轮播图列表</el-menu-item>
             <el-menu-item index="/home/addImgTo">添加轮播图</el-menu-item>
-            <!--<el-menu-item index="/home/text">测试用</el-menu-item>-->
+            <el-menu-item index="/home/text">测试用</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
